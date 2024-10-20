@@ -1,4 +1,4 @@
-#Import necessary libraries and modules
+# Import necessary libraries and modules
 from datetime import datetime
 from workout import Workout
 from health_metrics import HealthMetrics
@@ -36,7 +36,7 @@ class FitnessTracker:
     print("Workout logged successfully!")
 
     def track_health_metrics(self):
-        #User inputs for health metrics andn update the health_metrics
+        # User inputs for health metrics andn update the health_metrics
         weight = float(input("Enter current weight (kg): "))
         body_fat = float(input("Enter body fat percentage: "))
         calories_intake = int(input("Enter daily calories intake: "))
@@ -44,7 +44,7 @@ class FitnessTracker:
         print("Health metrics updated successfully!")
 
     def set_fitness_goals(self):
-        #Set a fitness goal for user (e.g., lose weight or build muscle)
+        # Set a fitness goal for user (e.g., lose weight or build muscle)
         goal_type = input("Enter goal type (e.g., 'Lose weight', 'Build muscle'): ")
         target_value = float(input("Enter target value (e.g., target weight): "))
         self.goal_manager.set_goal(goal_type, target_value)

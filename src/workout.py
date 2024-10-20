@@ -1,4 +1,4 @@
-#workout class to store workout information
+# Workout class to store workout information
 class Workout:
     def __init__(self, exercise, duration, intensity, calories_burned, date):
         self.exercise = exercise
