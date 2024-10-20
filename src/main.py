@@ -7,30 +7,28 @@ from db_manager import load_data, save_data
 
 # Main Fitness Tracker application class
 class FitnessTracker:
-    def__init__(self):
-    #Initialize the application with empty or loaded data
-    self.workouts = []
-    #Health metrics class
-    self.health_metrics = HealthMetrics()
-    #Goal manager class 
-    self.goal_manager = GoalManager()
-    self.load_data()
+    def __init__(self):
+        # Initialize the application with empty or loaded data
+        self.workouts = []
+        self.health_metrics = HealthMetrics()  # Health metrics class instance
+        self.goal_manager = GoalManager()      # Goal manager class instance
+        self.load_data()
 
     def load_data(self):
-        #Load saved data from the JSON file or initialize with default values
+        # Load saved data from the JSON file or initialize with default values
         self.workouts, self.health_metrics.data, self.goal_manager.goals = load_data()
 
     def save_data(self):
-        #Save current data (workouts, health metrics, and goals) to the JSON file 
+        # Save current data (workouts, health metrics, and goals) to the JSON file 
         save_data(self.workouts, self.health_metrics.data, self.goal_manager.goals)
 
-    def log_workouts(self):
-        #Gets user to input workout details and log it
-        excercise = input("Enter exercise type:")
+    def log_workout(self):
+        # Get user input for workout details and log it
+        exercise = input("Enter exercise type: ")
         duration = int(input("Enter duration (in minutes): "))
         intensity = input("Enter intensity (low/medium/high): ")
-        calories_burned = int(input("Enter calories burned: ")) 
-        date = datetime.now().strftime("%Y-%m-%d $H:%M:%S")
+        calories_burned = int(input("Enter calories burned: "))
+        date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     # Create a new workout and add it to the list
     workout = Workout(excercise, duration, intensity, calories_burned, date)
@@ -53,7 +51,7 @@ class FitnessTracker:
         print("Goal set successfully!")
 
     def view_summary(self):
-        #Displays a summary of workouts, health metricsm, and fitness goals
+        # Displays a summary of workouts, health metricsm, and fitness goals
         print("\n--- Workouts ---'")
         for workout in self.workouts:
             print(workout)
@@ -66,12 +64,12 @@ class FitnessTracker:
                 print(goal)
 
     def generate_progress_report(self):
-        #Generate a fitness progress report based on goals and health metrics
+        # Generate a fitness progress report based on goals and health metrics
         print("\n--- Progress Report ---")
         self.goal_manager.generate_report(self.workouts, self.health_metrics)
 
     def menu(self):
-        #Main Menu loop for the application
+        # Main Menu loop for the application
         while True:
             print("\nFitness Tracker Menu:")
             print("1. Log Workout")
@@ -100,9 +98,7 @@ class FitnessTracker:
             else:
                 print("Invalid option, please try again")
 
-   #Entry point of the application
-   if__name__== "__main__":
-        #Create an instance of the application
-      tracker = FitnessTracker()
-       #Start the menu 
-       tracker.menu()
+# Entry point of the application
+if __name__ == "__main__":
+    tracker = FitnessTracker()  # Create an instance of the application
+    tracker.menu()  # Start the menu loop
