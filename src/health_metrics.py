@@ -1,4 +1,4 @@
-
+#heal metrics class to track weight, body fat, and daily calories intake
 class HealthMetrics:
     def__init__(self):
     self.data = {
@@ -11,6 +11,7 @@ class HealthMetrics:
     }
 
     def update_metrics(self, weight, body_fat, calories_intake):
+        # Updates metrics with new values provided by the user
         self.data["weight"] = weights
         self.data["body_fat"] = body_fat
         self.data["calories_intake"] = calories_intake
