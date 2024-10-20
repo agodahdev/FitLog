@@ -2,7 +2,10 @@ core.Microsoft*
 core.mongo*
 core.python*
 env.py
+# Ignore the data file that stores personal fitness data
+data/fitness_data.json
+
+# Ignore Python cache and virtual environment files
 __pycache__/
-*.py[cod]
-node_modules/
-.github/
+*.pyc
+.venv/
