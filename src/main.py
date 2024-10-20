@@ -70,4 +70,39 @@ class FitnessTracker:
         print("\n--- Progress Report ---")
         self.goal_manager.generate_report(self.workouts, self.health_metrics)
 
-    
+    def menu(self):
+        #Main Menu loop for the application
+        while True:
+            print("\nFitness Tracker Menu:")
+            print("1. Log Workout")
+            print("2. Track Health Metrics")
+            print("3. Set Fitness Goals")
+            print("4. View Summary")
+            print("5. Generate Progress Report")
+            print("6. Save and Exit")
+
+            choice = input("Choose an option (1-6): ")
+
+            if choice == '1':
+                self.log_workout()
+            elif choice == '2':
+                self.track_health_metrics()
+            elif choice == '3':
+                self.set_fitness_goals()
+            elif choice == '4':
+                self.view_summary()
+            elif choice == '5':
+                self.generate_progress_report()
+            elif choice == '6':
+                self.save_data()
+                print("Data saved. Exiting the application.")
+                break
+            else:
+                print("Invalid option, please try again")
+
+   #Entry point of the application
+   if__name__== "__main__":
+        #Create an instance of the application
+      tracker = FitnessTracker()
+       #Start the menu 
+       tracker.menu()
