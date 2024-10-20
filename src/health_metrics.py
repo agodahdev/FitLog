@@ -1,4 +1,4 @@
-#heal metrics class to track weight, body fat, and daily calories intake
+#health metrics class to track weight, body fat, and daily calories intake
 class HealthMetrics:
     def__init__(self):
     self.data = {
