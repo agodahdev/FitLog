@@ -36,3 +36,38 @@ class FitnessTracker:
     workout = Workout(excercise, duration, intensity, calories_burned, date)
     self.workouts.append(workout)
     print("Workout logged successfully!")
+
+    def track_health_metrics(self):
+        #User inputs for health metrics andn update the health_metrics
+        weight = float(input("Enter current weight (kg): "))
+        body_fat = float(input("Enter body fat percentage: "))
+        calories_intake = int(input("Enter daily calories intake: "))
+        self.track_health_metrics.update_metrics(weight, body_fat, calories_intake)
+        print("Health metrics updated successfully!")
+
+    def set_fitness_goals(self):
+        #Set a fitness goal for user (e.g., lose weight or build muscle)
+        goal_type = input("Enter goal type (e.g., 'Lose weight', 'Build muscle'): ")
+        target_value = float(input("Enter target value (e.g., target weight): "))
+        self.goal_manager.set_goal(goal_type, target_value)
+        print("Goal set successfully!")
+
+    def view_summary(self):
+        #Displays a summary of workouts, health metricsm, and fitness goals
+        print("\n--- Workouts ---'")
+        for workout in self.workouts:
+            print(workout)
+
+            print("\n--- Health Metrics ---")
+            print(self.health_metrics)
+
+            print("\n--- Fitness Goals ---")
+            for goal in self.goal_manager.goals:
+                print(goal)
+
+    def generate_progress_report(self):
+        #Generate a fitness progress report based on goals and health metrics
+        print("\n--- Progress Report ---")
+        self.goal_manager.generate_report(self.workouts, self.health_metrics)
+
+    
