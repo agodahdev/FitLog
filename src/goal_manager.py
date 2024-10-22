@@ -1,4 +1,4 @@
-#Goal manager class to manage fitness goal and generate progress reports
+# Goal manager class to manage fitness goal and generate progress reports
 class GoalManager:
     def __init__(self):
         # Initialize an empty list of goals
@@ -10,12 +10,27 @@ class GoalManager:
         self.goals.append(goal)
 
     def generate_report(self, workouts, health_metrics):
-        # Generate a report on the user's progress toward fitness goals
-        for goal in self.goals:
-            print(f"Goal: {goal['goal_type']}, Target: {goal['target_value']}")
-            print(f"Current Weight: {health_metrics.data['weight']} kg")
-            # Basic progress calculation
-            print(f"Progress: {goal['progress']}%")
-            print("Workouts contributing to progress:")
-            for workout in workouts:
-                print(f"  - {workout}")
+    # Loop through all goals
+    for goal in self.goals:
+        print(f"Goal: {goal['goal_type']}, Target: {goal['target_value']}")
+
+        # Check if the goal is 'Lose weight'
+        if goal['goal_type'] == "lose weight":
+            # Access health metrics as object attributes
+            current_weight = health_metrics.weight  # Fix: Accessing as attribute
+            target_weight = goal['target_value']
+            initial_weight = goal['initial_weight']
+
+            # Calculate progress based on weight loss
+            if current_weight > target_weight:
+                progress = ((initial_weight - current_weight) / (initial_weight - target_weight)) * 100
+                goal['progress'] = progress
+                print(f"Current Weight: {current_weight} kg")
+                print(f"Progress: {goal['progress']}%")
+            else:
+                print(f"Goal achieved! Current weight: {current_weight} kg")
+
+        # List workouts
+        print("Workouts contributing to progress:")
+        for workout in workouts:
+            print(f"  - {workout}")
