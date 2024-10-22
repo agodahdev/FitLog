@@ -23,20 +23,22 @@ class FitnessTracker:
         save_data(self.workouts, self.health_metrics.data, self.goal_manager.goals)
 
     def log_workout(self):
-        # Get user input for workout details and log it
-        exercise = input("Enter exercise type: ")
-        duration = int(input("Enter duration (in minutes): "))
-        intensity = input("Enter intensity (low/medium/high): ")
-        calories_burned = int(input("Enter calories burned: "))
-        date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        try:
+            # Get user input for workout details and log it
+            exercise = input("Enter exercise type: ")
+            duration = int(input("Enter duration (in minutes): "))
+            intensity = input("Enter intensity (low/medium/high): ")
+            calories_burned = int(input("Enter calories burned: "))
+            date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    # Create a new workout and add it to the list
-    workout = Workout(excercise, duration, intensity, calories_burned, date)
-    self.workouts.append(workout)
-    print("Workout logged successfully!")
+            workout = Workout(exercise, duration, intensity, calories_burned, date)
+            self.workouts.append(workout)
+            print("Workout logged successfully!")
+        except ValueError:
+            print("Invalid input. Please enter numeric values for duration and calories.")
 
     def track_health_metrics(self):
-        # User inputs for health metrics andn update the health_metrics
+        # User inputs for health metrics and update the health_metrics
         weight = float(input("Enter current weight (kg): "))
         body_fat = float(input("Enter body fat percentage: "))
         calories_intake = int(input("Enter daily calories intake: "))
@@ -51,17 +53,17 @@ class FitnessTracker:
         print("Goal set successfully!")
 
     def view_summary(self):
-        # Displays a summary of workouts, health metricsm, and fitness goals
-        print("\n--- Workouts ---'")
+        # Displays a summary of workouts, health metrics, and fitness goals
+        print("\n--- Workouts ---")
         for workout in self.workouts:
             print(workout)
 
-            print("\n--- Health Metrics ---")
-            print(self.health_metrics)
+        print("\n--- Health Metrics ---")
+        print(self.health_metrics)
 
-            print("\n--- Fitness Goals ---")
-            for goal in self.goal_manager.goals:
-                print(goal)
+        print("\n--- Fitness Goals ---")
+        for goal in self.goal_manager.goals:
+            print(goal)
 
     def generate_progress_report(self):
         # Generate a fitness progress report based on goals and health metrics
