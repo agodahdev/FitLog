@@ -42,7 +42,7 @@ class FitnessTracker:
         weight = float(input("Enter current weight (kg): "))
         body_fat = float(input("Enter body fat percentage: "))
         calories_intake = int(input("Enter daily calories intake: "))
-        self.track_health_metrics.update_metrics(weight, body_fat, calories_intake)
+        self.health_metrics.update_metrics(weight, body_fat, calories_intake)
         print("Health metrics updated successfully!")
 
     def set_fitness_goals(self):
