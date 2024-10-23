@@ -5,6 +5,7 @@ from health_metrics import HealthMetrics
 from goal_manager import GoalManager
 from db_manager import load_data, save_data
 
+
 # Main Fitness Tracker application class
 class FitnessTracker:
     def __init__(self):
@@ -16,91 +17,94 @@ class FitnessTracker:
 
     def load_data(self):
         # Load saved data from the JSON file or initialize with default values
-        self.workouts, self.health_metrics.data, self.goal_manager.goals = load_data()
+        self.workouts, self.health_metrics.data, self.goal_manager.goals = \
+            load_data()
 
     def save_data(self):
-        # Save current data (workouts, health metrics, and goals) to the JSON file 
-        save_data(self.workouts, self.health_metrics.data, self.goal_manager.goals)
+        # Save current data (workouts, health metrics, and goals)
+        # to the JSON file
+        save_data(
+            self.workouts, self.health_metrics.data, self.goal_manager.goals
+        )
 
     def log_workout(self):
-      try:
-        # Get user input for workout details and log it
-        exercise = input("Enter exercise type: ")
-        
-        # Validate duration (must be positive)
-        duration = int(input("Enter duration (in minutes): "))
-        if duration <= 0:
-            raise ValueError("Duration must be a positive number.")
-        
-        # Validate intensity level
-        intensity = input("Enter intensity (low/medium/high): ").lower()
-        if intensity not in ['low', 'medium', 'high']:
-            raise ValueError("Invalid intensity. Please choose 'low', 'medium', or 'high'.")
-        
-        # Validate calories burned (must be realistic)
-        calories_burned = int(input("Enter calories burned: "))
-        if calories_burned <= 0 or calories_burned > 10000:
-            raise ValueError("Calories burned must be a positive number and less than 10,000.")
+        try:
+            # Get user input for workout details and log it
+            exercise = input("Enter exercise type: ")
+            duration = int(input("Enter duration (in minutes): "))
+            if duration <= 0 or duration > 1440:
+                raise ValueError(
+                    "Duration must be between 1 and 1440 minutes."
+                )
+            intensity = input("Enter intensity (low/medium/high): ").lower()
+            if intensity not in ['low', 'medium', 'high']:
+                raise ValueError(
+                    "Invalid intensity. Please choose 'low', 'medium', "
+                    "or 'high'."
+                )
+            calories_burned = int(input("Enter calories burned: "))
+            if calories_burned <= 0 or calories_burned >= 10000:
+                raise ValueError(
+                    "Calories burned must be a positive number and less "
+                    "than 10,000."
+                )
+            date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-        # Record the date and time of the workout
-        date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-        # Create and log the workout
-        workout = Workout(exercise, duration, intensity, calories_burned, date)
-        self.workouts.append(workout)
-        print("Workout logged successfully!")
-    
-      except ValueError as e:
-        # Handles invalid input 
-        print(f"Error: {e}. Please try again.")
+            workout = Workout(
+                exercise, duration, intensity, calories_burned, date
+            )
+            self.workouts.append(workout)
+            print("Workout logged successfully!")
+        except ValueError as e:
+            print(f"Error: {e}. Please try again.")
 
     def track_health_metrics(self):
-      try:
-        # Validate weight (must be realistic)
-        weight = float(input("Enter current weight (kg): "))
-        if weight <= 0 or weight > 500:
-            raise ValueError("Weight must be between 1 and 500 kg.")
-
-        # Validate body fat percentage (0-100%)
-        body_fat = float(input("Enter body fat percentage: "))
-        if body_fat < 0 or body_fat > 100:
-            raise ValueError("Body fat percentage must be between 0 and 100.")
-
-        # Validate daily calories intake (must be realistic)
-        calories_intake = int(input("Enter daily calories intake: "))
-        if calories_intake <= 0 or calories_intake > 10000:
-            raise ValueError("Calories intake must be a positive number and less than 10,000.")
-
-        # Update health metrics if all inputs are valid
-        self.health_metrics.update_metrics(weight, body_fat, calories_intake)
-        print("Health metrics updated successfully!")
-    
-      except ValueError as e:
-        # Handle invalid input 
-        print(f"Error: {e}. Please try again.")
+        # User inputs for health metrics and update the health_metrics
+        try:
+            weight = float(input("Enter current weight (kg): "))
+            if weight <= 0 or weight > 500:
+                raise ValueError("Weight must be between 1 and 500 kg.")
+            body_fat = float(input("Enter body fat percentage: "))
+            if body_fat < 0 or body_fat > 100:
+                raise ValueError(
+                    "Body fat percentage must be between 0 and 100."
+                )
+            calories_intake = int(input("Enter daily calories intake: "))
+            if calories_intake <= 0:
+                raise ValueError("Calories intake must be a positive number.")
+            self.health_metrics.update_metrics(
+                weight, body_fat, calories_intake
+            )
+            print("Health metrics updated successfully!")
+        except ValueError as e:
+            print(f"Error: {e}. Please try again.")
 
     def set_fitness_goals(self):
-      try:
-        # Validate goal type
-        goal_type = input("Enter goal type (e.g., 'Lose weight', 'Build muscle'): ").lower()
+        # Get goal type and target weight from user
+        goal_type = input("Enter goal type (e.g., 'Lose weight'): ").lower()
         if goal_type not in ['lose weight', 'build muscle']:
-            raise ValueError("Invalid goal type. Please choose 'Lose weight' or 'Build muscle'.")
+            print(
+                "Invalid goal type. Please choose 'Lose weight' "
+                "or 'Build muscle'."
+            )
+            return
+        try:
+            target_value = float(
+                input("Enter target value (e.g., target weight): ")
+            )
+            if target_value <= 0 or target_value > 500:
+                raise ValueError(
+                    "Target value must be between 1 and 500 kg."
+                )
 
-        # Validate target value (realistic goal)
-        target_value = float(input("Enter target value (e.g., target weight): "))
-        if target_value <= 0 or target_value > 500:
-            raise ValueError("Target value must be between 1 and 500 kg.")
+            # Use current weight as the starting point for progress tracking
+            initial_weight = self.health_metrics.data['weight']
 
-        # Get initial weight from current health metrics
-        initial_weight = self.health_metrics.weight
-
-        # Set goal with initial weight
-        self.goal_manager.set_goal(goal_type, target_value, initial_weight)
-        print("Goal set successfully!")
-    
-      except ValueError as e:
-        # Handle invalid input 
-        print(f"Error: {e}. Please try again.")
+            # Set the goal with the current weight as the starting point
+            self.goal_manager.set_goal(goal_type, target_value, initial_weight)
+            print("Goal set successfully!")
+        except ValueError as e:
+            print(f"Error: {e}. Please try again.")
 
     def view_summary(self):
         # Displays a summary of workouts, health metrics, and fitness goals
@@ -148,7 +152,8 @@ class FitnessTracker:
                 print("Data saved. Exiting the application.")
                 break
             else:
-                print("Invalid option, please try again")
+                print("Invalid option, please try again.")
+
 
 # Entry point of the application
 if __name__ == "__main__":
