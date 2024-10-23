@@ -78,19 +78,29 @@ class FitnessTracker:
       except ValueError as e:
         # Handle invalid input 
         print(f"Error: {e}. Please try again.")
-        
+
     def set_fitness_goals(self):
-       # Get goal type and target weight from user
-       goal_type = input("Enter goal type (e.g.,'Build muscle', 'Lose weight'): ")
-       target_value = float(input("Enter target value (e.g., target weight): "))
+      try:
+        # Validate goal type
+        goal_type = input("Enter goal type (e.g., 'Lose weight', 'Build muscle'): ").lower()
+        if goal_type not in ['lose weight', 'build muscle']:
+            raise ValueError("Invalid goal type. Please choose 'Lose weight' or 'Build muscle'.")
 
-       # Use current weight as the starting point for progress tracking
-       initial_weight = self.health_metrics.weight  # Correctly set initial weight here
+        # Validate target value (realistic goal)
+        target_value = float(input("Enter target value (e.g., target weight): "))
+        if target_value <= 0 or target_value > 500:
+            raise ValueError("Target value must be between 1 and 500 kg.")
 
-       # Set the goal with the current weight as the starting point
-       self.goal_manager.set_goal(goal_type, target_value, initial_weight)
+        # Get initial weight from current health metrics
+        initial_weight = self.health_metrics.weight
 
-       print("Goal set successfully!")
+        # Set goal with initial weight
+        self.goal_manager.set_goal(goal_type, target_value, initial_weight)
+        print("Goal set successfully!")
+    
+      except ValueError as e:
+        # Handle invalid input 
+        print(f"Error: {e}. Please try again.")
 
     def view_summary(self):
         # Displays a summary of workouts, health metrics, and fitness goals
