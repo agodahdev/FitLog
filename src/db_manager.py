@@ -2,26 +2,30 @@
 import json
 
 # Function to load data from JSON file
+
+
 def load_data(filename="data/fitness_data.json"):
     try:
         # Try opening the file for reading
         with open(filename, 'r') as f:
             data = json.load(f)  # Load the JSON data
-            # Ensure health metrics are initialized with default values if they don't exist in the file
+            # set default health metrics if not in file
             health_metrics = data.get("health_metrics", {
                 "weight": 0.0,       # Default weight
                 "body_fat": 0.0,     # Default body fat percentage
                 "calories_intake": 0  # Default daily calorie intake
             })
-            # Use .get() for workouts and goals to avoid KeyError if they don't exist in the JSON file
+            # Use .get() for workouts and goals to avoid KeyError
             workouts = data.get("workouts", [])
             goals = data.get("goals", [])
-            
+
             # Return the loaded data with safe fallback values
             return workouts, health_metrics, goals
     except FileNotFoundError:
         # If the file is not found, initialize empty defaults
-        print(f"File '{filename}' not found. Initializing with default values.")
+        print(
+            f"File '{filename}' not found. Initializing with default values."
+        )
         return [], {"weight": 0.0, "body_fat": 0.0, "calories_intake": 0}, []
     except json.JSONDecodeError:
         # Handle the case where the JSON file is corrupted or malformed
@@ -30,15 +34,20 @@ def load_data(filename="data/fitness_data.json"):
 
 
 # Function to save data to JSON file
-def save_data(workouts, health_metrics, goals, filename="data/fitness_data.json"):
+def save_data(
+    workouts, health_metrics, goals, filename="data/fitness_data.json"
+      ):
     # Prepare the data dictionary for saving
     data = {
-        # Convert Workout objects to dictionaries if they have a __dict__ attribute
-        "workouts": [workout.__dict__ if hasattr(workout, '__dict__') else workout for workout in workouts],
+        # Convert Workout objects to dict if they have a __dict__ attribute
+        "workouts": [
+            workout.__dict__ if hasattr(workout, '__dict__') else workout
+            for workout in workouts
+            ],
         "health_metrics": health_metrics,  # Save updated health metrics
         "goals": goals
     }
-    
+
     # Try writing the data to the JSON file
     try:
         with open(filename, 'w') as f:
