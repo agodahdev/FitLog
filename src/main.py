@@ -51,17 +51,34 @@ class FitnessTracker:
         print("Workout logged successfully!")
     
       except ValueError as e:
-        # Handle invalid input gracefully
+        # Handles invalid input 
         print(f"Error: {e}. Please try again.")
 
     def track_health_metrics(self):
-        # User inputs for health metrics and update the health_metrics
+      try:
+        # Validate weight (must be realistic)
         weight = float(input("Enter current weight (kg): "))
+        if weight <= 0 or weight > 500:
+            raise ValueError("Weight must be between 1 and 500 kg.")
+
+        # Validate body fat percentage (0-100%)
         body_fat = float(input("Enter body fat percentage: "))
+        if body_fat < 0 or body_fat > 100:
+            raise ValueError("Body fat percentage must be between 0 and 100.")
+
+        # Validate daily calories intake (must be realistic)
         calories_intake = int(input("Enter daily calories intake: "))
+        if calories_intake <= 0 or calories_intake > 10000:
+            raise ValueError("Calories intake must be a positive number and less than 10,000.")
+
+        # Update health metrics if all inputs are valid
         self.health_metrics.update_metrics(weight, body_fat, calories_intake)
         print("Health metrics updated successfully!")
-
+    
+      except ValueError as e:
+        # Handle invalid input 
+        print(f"Error: {e}. Please try again.")
+        
     def set_fitness_goals(self):
        # Get goal type and target weight from user
        goal_type = input("Enter goal type (e.g.,'Build muscle', 'Lose weight'): ")
