@@ -9,4 +9,7 @@ class Workout:
 
     # String representation of the workout for easy printing
     def __str__(self):
-        return f"{self.date}: {self.exercise} for {self.duration} mins ({self.intensity} intensity) - {self.calories_burned} kcal"
+        return (
+            f"{self.date}: {self.exercise} for {self.duration} mins "
+            f"({self.intensity} intensity) - {self.calories_burned} kcal"
+        )
