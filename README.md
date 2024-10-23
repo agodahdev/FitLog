@@ -165,3 +165,6 @@ Here’s a list of errors I encountered and resolved during the development of t
 
 - Code institute deployment terminal
 
+- PEP8 Style Guide for Python Code:
+
+  - Tutorial link: PEP 8 Style Guide: https://peps.python.org/pep-0008/
