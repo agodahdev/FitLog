@@ -14,4 +14,7 @@ class HealthMetrics:
 
     def __str__(self):
         # String representation for displaying metrics
-        return f"Weight: {self.weight} kg, Body Fat: {self.body_fat}%, Calories Intake: {self.calories_intake} kcal"
+        return (
+            f"Weight: {self.weight} kg, Body Fat: {self.body_fat}%, "
+            f"Calories Intake: {self.calories_intake} kcal"
+        )

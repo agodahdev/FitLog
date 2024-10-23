@@ -45,8 +45,8 @@ class FitnessTracker:
             calories_burned = int(input("Enter calories burned: "))
             if calories_burned <= 0 or calories_burned >= 10000:
                 raise ValueError(
-                    "Calories burned must be a positive number and less "
-                    "than 10,000."
+                    "Calories burned must be a positive number"
+                     "and less than 10,000."
                 )
             date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -70,8 +70,9 @@ class FitnessTracker:
                     "Body fat percentage must be between 0 and 100."
                 )
             calories_intake = int(input("Enter daily calories intake: "))
-            if calories_intake <= 0:
-                raise ValueError("Calories intake must be a positive number.")
+            if calories_intake <= 0 or calories_intake > 10000:
+                raise ValueError("Calories intake must be a positive number and less" 
+                                 " than 10,000.")
             self.health_metrics.update_metrics(
                 weight, body_fat, calories_intake
             )
