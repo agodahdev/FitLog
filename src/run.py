@@ -46,7 +46,7 @@ class FitnessTracker:
             if calories_burned <= 0 or calories_burned >= 10000:
                 raise ValueError(
                     "Calories burned must be a positive number"
-                     "and less than 10,000."
+                     " and less than 10,000."
                 )
             date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
