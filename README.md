@@ -1,12 +1,16 @@
- # Fitlog
+ # Fitlog:
+
+ ![alt text](image-7.png)
 
 ## About the app:
-The fitness tracker app helps user monitor their workouts, track their health metrics (like weight, body fat percentage, and calories intake)m
-and set fitness goals. It allowes users to log their workouts, update health information, and see their progress towards a goal like lose weight
-or building muscle. The app is designed to give users an easy way to keep track of their fitness journey, view summeries, and generate progress reports. 
+Fitlog is a fitness tracker app helps user monitor their workouts, track their health metrics (like weight, body fat percentage, and calories intake)m
+and set fitness goals. It allows users to log their workouts, update health information, and see their progress towards a goal like lose weight
+or building muscle. The app is designed to give users an easy way to keep track of their fitness journey, view summaries, and generate progress reports. 
+
+![alt text](image.png)
 
 ## Features:
-1.**Log Workouts**: Record the type excercise, duration, intensity and calories burned.
+1.**Log Workouts**: Record the type exercise, duration, intensity and calories burned.
 
 2.**Track Health Metrics**: Update weight, body fat percentage, and daily calorie intake.
 
@@ -28,13 +32,16 @@ or building muscle. The app is designed to give users an easy way to keep track 
    5. Generate Progress Report
    6. Save and Exit.
 
+
 ### How to log Workouts:
 - Choose option 1 to log workout.
-- Enter the excercise type (e.g. running)
+- Enter the exercise type (e.g. running)
 - Enter the duration (in minutes).
 - Enter the intensity (low, medium, or high).
 - Enter the number of calories burned.
 - The workout will be logged, and you will see a success message.
+
+  ![alt text](image-1.png)
 
 ### How to Track Health Metrics:
 - Choose option 2 to track your health metrics.
@@ -43,22 +50,32 @@ or building muscle. The app is designed to give users an easy way to keep track 
 - Enter your daily calorie intake.
 - The health metrics will be updated, and you will see a success message.
 
+![alt text](image-2.png)
+
 ### How to Set Fitness Goals:
 - Choose option 3 to set a fitness goal.
 - Enter the goal type (e.g., Lose weight or Build muscle).
 - Enter your target value (e.g., target weight).
 - The app will set the goal, and you will see a success message.
 
+![alt text](image-3.png)
+
 ### How to View Summary:
 - Choose option 4 to view a summary.
 - You’ll see a list of your logged workouts, current health metrics, and fitness goals.
+
+![alt text](image-4.png)
 
 ### How to Generate Progress Report:
 - Choose option 5 to generate a progress report.
 - You’ll see your goal, the progress you’ve made, and the workouts contributing to your progress.
 
+![alt text](image-5.png)
+
 ### How to Save and Exit:
 - Choose option 6 to save your data and exit the app. When you restart the app, all your previous information will still be there.
+
+![alt text](image-6.png)
 
 ## Testing
 Here’s a list of errors I encountered and resolved during the development of the app:
@@ -128,9 +145,12 @@ Here’s a list of errors I encountered and resolved during the development of t
 
  - Fork or clone this repo
  - Create a new Heroku app
- - Set buildingblacks to Python and NodeJS 
+ - Set buildingpacks to Python and NodeJS 
  - Link the Heroku app to Github, searching repo
  - Deploy Branch
+ - live link is here: 
+ https://fitlog-dacf024b7596.herokuapp.com/
+
 
  - **Github deployment**:
 
@@ -143,5 +163,5 @@ Here’s a list of errors I encountered and resolved during the development of t
 
 - Code institute Python Essentials Template
 
-- Code institure deployment terminal
+- Code institute deployment terminal
 
