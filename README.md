@@ -1,32 +1,61 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+ # Fitlog
 
-Welcome,
+## About the app:
+The fitness tracker app helps user monitor their workouts, track their health metrics (like weight, body fat percentage, and calories intake)m
+and set fitness goals. It allowes users to log their workouts, update health information, and see their progress towards a goal like lose weight
+or building muscle. The app is designed to give users an easy way to keep track of their fitness journey, view summeries, and generate progress reports. 
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **May 14, 2024**
+## Features:
+1.**Log Workouts**: Record the type excercise, duration, intensity and calories burned.
 
-## Reminders
+2.**Track Health Metrics**: Update weight, body fat percentage, and daily calorie intake.
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
+3.**Set Fitness Goals**: Set Goals like losing weight or building muscle and track your progress.
 
-## Creating the Heroku app
+4.**View Summary**: See your logged workouts, health metrics, fitness goals in one place.
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+5.**Generate Progress Report**: Get a detailed report showing how much progress you've toward your goal.
 
-1. `heroku/python`
-2. `heroku/nodejs`
+6.**Save and Exit**: The app saves your data so that when you restart it, all your previous information will still be there.
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+## Instructions on How to use it:
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+1.**Menu Options**: When you start the app, you'll see that the main menu with the following options:
+   1. Log Workout
+   2. Track Health Metrics
+   3. Set Fitness Goals
+   4. View Summary
+   5. Generate Progress Report
+   6. Save and Exit.
 
-Connect your GitHub repository and deploy as normal.
+### How to log Workouts:
+- Choose option 1 to log workout.
+- Enter the excercise type (e.g. running)
+- Enter the duration (in minutes).
+- Enter the intensity (low, medium, or high).
+- Enter the number of calories burned.
+- The workout will be logged, and you will see a success message.
 
-## Constraints
+### How to Track Health Metrics:
+- Choose option 2 to track your health metrics.
+- Enter your current weight (in kg).
+- Enter your body fat percentage.
+- Enter your daily calorie intake.
+- The health metrics will be updated, and you will see a success message.
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+### How to Set Fitness Goals:
+- Choose option 3 to set a fitness goal.
+- Enter the goal type (e.g., Lose weight or Build muscle).
+- Enter your target value (e.g., target weight).
+- The app will set the goal, and you will see a success message.
 
----
+### How to View Summary:
+- Choose option 4 to view a summary.
+- You’ll see a list of your logged workouts, current health metrics, and fitness goals.
 
-Happy coding!
+### How to Generate Progress Report:
+- Choose option 5 to generate a progress report.
+- You’ll see your goal, the progress you’ve made, and the workouts contributing to your progress.
+
+### How to Save and Exit:
+- Choose option 6 to save your data and exit the app. When you restart the app, all your previous information will still be there.
