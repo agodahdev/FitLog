@@ -23,19 +23,36 @@ class FitnessTracker:
         save_data(self.workouts, self.health_metrics.data, self.goal_manager.goals)
 
     def log_workout(self):
-        try:
-            # Get user input for workout details and log it
-            exercise = input("Enter exercise type: ")
-            duration = int(input("Enter duration (in minutes): "))
-            intensity = input("Enter intensity (low/medium/high): ")
-            calories_burned = int(input("Enter calories burned: "))
-            date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+      try:
+        # Get user input for workout details and log it
+        exercise = input("Enter exercise type: ")
+        
+        # Validate duration (must be positive)
+        duration = int(input("Enter duration (in minutes): "))
+        if duration <= 0:
+            raise ValueError("Duration must be a positive number.")
+        
+        # Validate intensity level
+        intensity = input("Enter intensity (low/medium/high): ").lower()
+        if intensity not in ['low', 'medium', 'high']:
+            raise ValueError("Invalid intensity. Please choose 'low', 'medium', or 'high'.")
+        
+        # Validate calories burned (must be realistic)
+        calories_burned = int(input("Enter calories burned: "))
+        if calories_burned <= 0 or calories_burned > 10000:
+            raise ValueError("Calories burned must be a positive number and less than 10,000.")
 
-            workout = Workout(exercise, duration, intensity, calories_burned, date)
-            self.workouts.append(workout)
-            print("Workout logged successfully!")
-        except ValueError:
-            print("Invalid input. Please enter numeric values for duration and calories.")
+        # Record the date and time of the workout
+        date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        # Create and log the workout
+        workout = Workout(exercise, duration, intensity, calories_burned, date)
+        self.workouts.append(workout)
+        print("Workout logged successfully!")
+    
+      except ValueError as e:
+        # Handle invalid input gracefully
+        print(f"Error: {e}. Please try again.")
 
     def track_health_metrics(self):
         # User inputs for health metrics and update the health_metrics

@@ -1,0 +1,9 @@
+{
+    "workouts": [],
+    "health_metrics": {
+        "weight": 0.0,
+        "body_fat": 0.0,
+        "calories_intake": 0
+    },
+    "goals": []
+}
