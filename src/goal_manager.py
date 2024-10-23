@@ -23,20 +23,21 @@ class GoalManager:
         # Check if the goal is 'Lose weight'
         if goal['goal_type'] == "lose weight":
             # Access health metrics as object attributes
-            current_weight = health_metrics.weight  # Fix: Accessing as attribute
-            target_weight = goal['target_value']
-            initial_weight = goal['initial_weight']
+            current_weight = health_metrics.weight  # Accessing current weight
+            target_weight = goal['target_value']  # Target weight for the goal
+            initial_weight = goal['initial_weight']  # Initial weight when goal was set
 
-            # Calculate progress based on weight loss
-        if current_weight > target_weight:
+            # Calculate progress based on weight loss, ensure progress doesn't exceed 100%
+            if current_weight > target_weight:
                 progress = ((initial_weight - current_weight) / (initial_weight - target_weight)) * 100
+                progress = min(progress, 100)  # Cap progress at 100%
                 goal['progress'] = progress
                 print(f"Current Weight: {current_weight} kg")
                 print(f"Progress: {goal['progress']}%")
-        else:
+            else:
                 print(f"Goal achieved! Current weight: {current_weight} kg")
 
-        # List workouts
+        # List workouts contributing to progress
         print("Workouts contributing to progress:")
         for workout in workouts:
             print(f"  - {workout}")

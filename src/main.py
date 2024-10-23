@@ -46,17 +46,17 @@ class FitnessTracker:
         print("Health metrics updated successfully!")
 
     def set_fitness_goals(self):
-         # Get goal type and target weight from user
-        goal_type = input("Enter goal type (e.g., 'Lose weight'): ")
-        target_value = float(input("Enter target value (e.g., target weight): "))
+       # Get goal type and target weight from user
+       goal_type = input("Enter goal type (e.g.,'Build muscle', 'Lose weight'): ")
+       target_value = float(input("Enter target value (e.g., target weight): "))
 
-        # Use current weight as the starting point for progress tracking
-        initial_weight = self.health_metrics.data['weight']
-    
-        # Set the goal with the current weight as the starting point
-        self.goal_manager.set_goal(goal_type, target_value, initial_weight)
-    
-        print("Goal set successfully!")
+       # Use current weight as the starting point for progress tracking
+       initial_weight = self.health_metrics.weight  # Correctly set initial weight here
+
+       # Set the goal with the current weight as the starting point
+       self.goal_manager.set_goal(goal_type, target_value, initial_weight)
+
+       print("Goal set successfully!")
 
     def view_summary(self):
         # Displays a summary of workouts, health metrics, and fitness goals
